@@ -19,6 +19,3 @@ def favicon():
 def main():
     with open("index.apk", "rb") as apkfile:
         return apkfile.read()
-
-
-app.run(host="0.0.0.0", port=80)
