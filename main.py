@@ -99,39 +99,9 @@ class Player:
                              self.radius * 2, self.radius * (self.comp + 1)))
 
 
-class Rock:
-    def __init__(self, scr: pygame.Surface, color: tuple[int, int, int] = (0, 255, 255), start_x: int = 100,
-                 start_y: int = 0, radius: int = 10):
-        self.x = start_x
-        self.y = start_y
-        self.screen = scr
-        self.color = color
-        self.radius = radius
-        self.velocity = 0
-        print("Rock Initialized!")
-
-    def update(self, ):  # rocks: []):
-        if heightByX[self.x] < heightByX[self.x + 5]:
-            self.x += random.randint(0, 100) // 25
-        elif heightByX[self.x] < heightByX[self.x - 5]:
-            self.x -= random.randint(0, 100) // 25
-        if self.x > WIDTH - self.radius:
-            self.x = WIDTH - self.radius
-        if self.x < self.radius:
-            self.x = self.radius
-        self.y += self.velocity
-        while calcMinDist(self, WIDTH, heightByX) < 0:
-            self.y -= 1
-        if self.y < self.radius:
-            self.y = self.radius
-        self.velocity += random.randint(100, 150) / 100
-        pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
-
-
 # definitions
 bot = Bot(screen, (100, 149, 237), WIDTH // 3, HEIGHT // 3, 20)
 player = Player(screen, (242, 140, 40), WIDTH // 3 * 2, HEIGHT // 3, 20)
-rocky = Rock(screen, (100, 100, 100), WIDTH // 2, 50, 10)
 drawing = False
 drawing_strait = False
 start_pos = (0, 0)
@@ -194,7 +164,6 @@ async def main():
         # update items
         bot.update()
         player.update()
-        rocky.update()
         # draw the ground
         b_points = [(0, HEIGHT)]
         b_points.extend(hbx2points(heightByX))
