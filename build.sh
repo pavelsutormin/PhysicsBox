@@ -1,5 +1,6 @@
 pip install flask
 mkdir assets
+cp icon.ico assets/icon.ico
 cp main.py assets/main.py
 cp phys_tools.py assets/phys_tools.py
 zip -r index.apk assets
