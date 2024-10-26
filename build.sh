@@ -1,6 +1,10 @@
 pip install flask
 pip install gunicorn
-zip index.apk main.py phys_tools.py
+mkdir assets
+cp main.py assets/main.py
+cp phys_tools.py assets/phys_tools.py
+zip -r index.apk assets
+rm -rf assets
 rm -rf dist
 mkdir dist
 cp index.apk dist/index.apk
