@@ -1,5 +1,4 @@
 pip install flask
-pip install gunicorn
 mkdir assets
 cp main.py assets/main.py
 cp phys_tools.py assets/phys_tools.py
