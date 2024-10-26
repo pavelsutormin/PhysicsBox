@@ -46,13 +46,13 @@ class Bot:
     def update(self):
         if random.randint(0, 100) == 0:
             if self.direction == 0:
-                self.direction = random.choice([-2, 2])
+                self.direction = random.choice([-4, 4])
             else:
                 self.direction = 0
         if self.y > HEIGHT // 2:
             if random.randint(0, 50) == 0:
                 for _b in range(1, 50):
-                    self.velocity = -2.3
+                    self.velocity = -3.3
         self.x -= self.direction
         if self.x > WIDTH - self.radius:
             self.x = WIDTH - self.radius
@@ -63,7 +63,7 @@ class Bot:
             self.y -= 1
         if self.y < self.radius:
             self.y = self.radius
-        self.velocity += 0.05
+        self.velocity += 0.1
         pygame.draw.ellipse(self.screen, self.color,
                             (self.x - self.radius, self.y - self.radius * self.comp,
                              self.radius * 2, self.radius * (self.comp + 1)))
@@ -93,7 +93,7 @@ class Player:
             self.y -= 1
         if self.y < self.radius:
             self.y = self.radius
-        self.velocity += 0.05
+        self.velocity += 0.1
         pygame.draw.ellipse(self.screen, self.color,
                             (self.x - self.radius, self.y - self.radius * self.comp,
                              self.radius * 2, self.radius * (self.comp + 1)))
@@ -124,7 +124,7 @@ class Rock:
             self.y -= 1
         if self.y < self.radius:
             self.y = self.radius
-        self.velocity += random.randint(5, 10) / 100
+        self.velocity += random.randint(100, 150) / 100
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
 
 
@@ -179,11 +179,11 @@ async def main():
                             print("There was a KeyError!")
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player.direction = 2
+                    player.direction = 4
                 if event.key == pygame.K_RIGHT:
-                    player.direction = -2
+                    player.direction = -4
                 if event.key == pygame.K_UP:
-                    player.velocity = -2.3
+                    player.velocity = -3.3
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player.direction = 0
